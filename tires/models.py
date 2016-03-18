@@ -16,7 +16,7 @@ class Tires(models.Model):
 
     #Страна изготовления
     country = models.CharField(max_length=30)
-    
+
     #Нагрузка
     tech = models.CharField(max_length=100)
 
@@ -25,7 +25,7 @@ class Tires(models.Model):
 
     #Путь до миниатюры
     img = models.CharField(max_length=100)
-   	
+
     #Назначение шины
     class_tire = models.CharField(max_length=100)
 
@@ -44,22 +44,3 @@ class Tires(models.Model):
     def __str__(self):
         text = self.size + " " + self.brand + " " + self.model
         return text
-    #Импорт из JSON файла старойбазы данных    
-    def import_from_file():
-    		with open('data.json') as data_file:    
-   					data = json.load(data_file)
-   					for i in data:
-   						q = Tires(
-   							price=data["price"],
-   							model=data["model"],
-   							brand=data["brand"],
-   							country=data["country"],
-   							tech=data["tech"],
-   							size=data["size"],
-   							img=data["img_big"],
-   							class_tire=data["class"],
-   							arch=data["type_arch"],
-   							sort=data["sort_id"] )
-   						if data["active"] != 1:
-   							q.active = False
-   						q.save()
