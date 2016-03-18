@@ -1,6 +1,7 @@
  # -*- coding: utf-8 -*-
 
 from django.db import models
+from slugify import slugify
 import json
 
 # --- Каталог шин ---
@@ -41,6 +42,17 @@ class Tires(models.Model):
     #Дата изменения
     pub_date = models.DateField(auto_now=True)
 
+    #ЧПУ
+    slug = models.SlugField(max_length=100)
+
     def __str__(self):
         text = self.size + " " + self.brand + " " + self.model
         return text
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            # Newly created object, so set slug
+            self.slug = slugify(self.size + " " + self.brand + " " + self.model + " " + self.tech)
+
+        super(Tires, self).save(*args, **kwargs)
+
