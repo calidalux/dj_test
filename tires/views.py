@@ -27,9 +27,10 @@ def get_tires(request):
         results = []
         for tire in tires:
             tire_json = {}
-            tire_json['id'] = tire.id
-            tire_json['label'] = tire.size
-            tire_json['value'] = tire.model
+            tire_json = tire.size + " " + tire.brand + " " + tire.model
+            #tire_json['id'] = tire.id
+            #tire_json['label'] = tire.size
+            #tire_json['value'] = tire.model
             results.append(tire_json)
         data = json.dumps(results)
     else:
