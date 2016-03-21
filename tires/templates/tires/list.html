@@ -1,0 +1,27 @@
+ {% load staticfiles %}
+
+ <html>
+ <head>
+    <title>Основная страница</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+     <script src="{% static 'tires/ac.js' %}" type="text/javascript"></script>
+</head>
+<body>
+
+    <h1>Шины</h1>
+    <div class="ui-widget">
+    <label for="tires">Шины: </label>
+      <input id="tires">
+  </div>
+
+  <ul>
+    {% for tires in object_list %}
+    <li><a href="/tires/catalog/{{ tires.slug }}">{{ tires.size }} {{ tires.brand }} {{ tires.model }}</a></li>
+    {% empty %}
+    <li>No tires yet.</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
