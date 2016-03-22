@@ -5,6 +5,8 @@ from django.http import HttpResponseRedirect
 from django.views import generic
 from django.db.models import Q
 
+import pdb
+
 from .models import Tires
 
 # Create your views here.
@@ -41,7 +43,8 @@ class SearchListView(generic.ListView):
     template_name = 'tires/list.html'
     def get_queryset(self):
         try:
-            name = self.kwargs['search']
+            #name = self.kwargs['search']
+            name = self.request.GET.get('search')
         except:
             name = ''
         if (name != ''):
