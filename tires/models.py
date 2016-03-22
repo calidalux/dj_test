@@ -45,6 +45,9 @@ class Tires(models.Model):
     #ЧПУ
     slug = models.SlugField(max_length=100)
 
+    #Полное имя
+    fullName = models.CharField(max_length=20, default="nullTire")
+
     def __str__(self):
         text = self.size + " " + self.brand + " " + self.model
         return text
@@ -53,6 +56,5 @@ class Tires(models.Model):
         if not self.id:
             # Newly created object, so set slug
             self.slug = slugify(self.size + " " + self.brand + " " + self.model + " " + self.tech)
-
+        self.fullName = self.size + " " + self.brand + " " + self.model + " " + self.tech
         super(Tires, self).save(*args, **kwargs)
-

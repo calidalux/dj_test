@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^catalog/(?P<slug>[\w-]+)/$', views.DetailView.as_view(), name='detail'),
     url(r'list/$', views.TiresListView.as_view(), name='tiresList'),
     url(r'^api/get_tires/', views.get_tires, name='get_tires'),
-
+    url(r'list/search/$', views.SearchListView.as_view(), name='tiresList'),
 ]
